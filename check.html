@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student App</title>
+</head>
+<body>
+    
+    <input type="checkbox" id="ug" name="studies" value="ug">
+    <label for="ug">ug</label>
+
+    <input type="checkbox" id="pg" name="studies" value="pg">
+    <label for="pg">pg</label>
+    <input type="checkbox" id="hsc" name="studies" value="hsc">
+    <label for="hsc">hsc</label>
+    <input type="checkbox" id="sslc" name="studies" value="sslc">
+    <label for="sslc">sslc</label>
+
+    <button onclick="CheckMe()" id="btn">Check Me</button>
+    <div id="dv">
+
+    </div>
+    <script>
+        var btn=document.getElementById('btn')
+        btn.addEventListener('click',()=>{
+            var chk=document.getElementsByName('studies')
+            var bt=''
+            for (let i of chk){
+                if(i.checked){
+                    bt=i.value
+                }
+            }
+        var divtg=document.getElementById('dv')
+        var h1=document.createElement('h1')
+        h1.textContent=bt
+        divtg.append(h1)
+        console.log(divtg);
+        })
+    </script>
+</body>
+</html>

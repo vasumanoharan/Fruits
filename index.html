@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Fruirts</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Fruit Store</h1>
+    <input type="text" id="fruitName">
+    <select name="" id="fruitColor">
+        <option value="Red">Red</option>
+        <option value="Orange">Orange</option>
+        <option value="Green">Green</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Rose">Rose</option>
+    </select>
+    <input type="number" id="fruitPrice">
+    <input type="number" id="fruitweight">
+
+    <div>
+        <button onclick="addFruit()">Add Fruit</button>
+        <button onclick="filterRed()">Red Fruits</button>
+        <button onclick="showAll()">ShowAll</button>
+
+
+        <button onclick="clrbtn('Green')">green</button>
+        <button onclick="clrbtn('Orange')">orange</button>
+        <button onclick="clrbtn('Yellow')">Yellow</button>
+        <button onclick="clrbtn('Rose')">Rose</button>
+
+
+    </div>
+
+    <table border="1">
+        <thead>
+            <th>Fruit Name</th>
+            <th>Fruit Color</th>
+            <th>Fruit Price</th>
+            <th>Fruit Weight</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4" style="text-align: center;">No Fruits</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var fruits = []
+        const addFruit = () => {
+            // get the variable from inputs
+            var fruitNameinput = document.getElementById('fruitName');
+            var fruitColorinput = document.getElementById('fruitColor');
+            var fruitPriceinput = document.getElementById('fruitPrice');
+            var fruitweightinput = document.getElementById('fruitweight');
+
+            // getting the values
+            var fruitName = fruitNameinput.value;
+            var fruitColor = fruitColorinput.value;
+            var fruitPrice = fruitPriceinput.value;
+            var fruitweight = fruitweightinput.value;
+
+            // clear the record  
+            fruitNameinput.value = '';
+            fruitColorinput.value = '';
+            fruitPriceinput.value = '';
+            fruitweightinput.value = '';
+
+            // push the value in array object
+            fruits.push({
+                fruitName: fruitName,
+                fruitColor: fruitColor,
+                fruitPrice: fruitPrice,
+                fruitweight: fruitweight
+            })
+
+            // get the variable from table
+            var table = document.querySelector('table tbody')
+
+            // create the tr element
+            var tr = document.createElement('tr')
+
+            // create the td element
+            var fruitNameTd = document.createElement('td')
+
+            // push the value td and tr
+            fruitNameTd.textContent = fruitName
+            tr.append(fruitNameTd)
+
+            // create the td element , push the value td and tr
+            var fruitColorTd = document.createElement('td')
+            fruitColorTd.textContent = fruitColor
+            tr.append(fruitColorTd)
+
+            // create the td element , push the value td and tr
+            var fruitPriceTd = document.createElement('td')
+            fruitPriceTd.textContent = fruitPrice
+            tr.append(fruitPriceTd)
+
+            // create the td element , push the value td and tr
+            var fruitweightTd = document.createElement('td')
+            fruitweightTd.textContent = fruitweight
+            tr.append(fruitweightTd)
+
+            // Finally append all the td,tr into table
+            table.append(tr)
+
+        }
+
+        const filterRed = () => {
+
+            // filter the records of red
+            var redFruit = fruits.filter(function (fruit) {
+                return fruit.fruitColor == 'Red'
+            })
+
+            // get the variable from table
+            var table = document.querySelector('table tbody')
+
+            // clear the table
+            table.innerHTML = ''
+
+            // mapping the records of red
+            redFruit.map(function (fruit) {
+
+                // create td and tr element,, push the value td and tr
+                var tr = document.createElement('tr')
+                var fruitNameTd = document.createElement('td')
+                fruitNameTd.textContent = fruit.fruitName
+                tr.append(fruitNameTd)
+
+                // create td  element,, push the value td and tr
+                var fruitColorTd = document.createElement('td')
+                fruitColorTd.textContent = fruit.fruitColor
+                tr.append(fruitColorTd)
+
+                // create td  element,, push the value td and tr
+                var fruitPriceTd = document.createElement('td')
+                fruitPriceTd.textContent = fruit.fruitPrice
+                tr.append(fruitPriceTd)
+
+                // create td  element,, push the value td and tr
+                var fruitweightTd = document.createElement('td')
+                fruitweightTd.textContent = fruit.fruitweight
+                tr.append(fruitweightTd)
+
+                // Finally append all the td,tr into table
+                table.append(tr)
+            })
+
+        }
+        const showAll = () => {
+            // console.log(fruits);
+
+            // get the variable from table
+            var table = document.querySelector('table tbody')
+
+            // clear the table
+            table.innerHTML = ''
+
+
+            fruits.forEach(function (element) {
+                // create td and tr element,, push the value td and tr
+                var tr = document.createElement('tr')
+                var fruitNameTd = document.createElement('td')
+                fruitNameTd.textContent = element.fruitName
+                tr.append(fruitNameTd)
+
+                // create td element,, push the value td and tr
+                var fruitNameTd = document.createElement('td')
+                fruitNameTd.textContent = element.fruitColor
+                tr.append(fruitNameTd)
+
+                // create td element,, push the value td and tr
+                var fruitNameTd = document.createElement('td')
+                fruitNameTd.textContent = element.fruitPrice
+                tr.append(fruitNameTd)
+
+                // create td element,, push the value td and tr
+                var fruitNameTd = document.createElement('td')
+                fruitNameTd.textContent = element.fruitweight
+                tr.append(fruitNameTd)
+
+                // Finally append all the td,tr into table
+                table.append(tr)
+
+            })
+        }
+        const clrbtn = (arg) => {
+            // get the variable from table
+            var table = document.querySelector('table tbody')
+
+            // clear the table
+            table.innerHTML = ''
+
+            if (arg == 'Green') {
+                var clr = fruits.filter(function (Green) {
+                    return Green.fruitColor == 'Green'
+                })
+                clr.map(function (Green) {
+                    var tr = document.createElement('tr')
+                    var fruitNameTd = document.createElement('td')
+                    fruitNameTd.textContent = Green.fruitName
+                    tr.append(fruitNameTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitColorTd = document.createElement('td')
+                    fruitColorTd.textContent = Green.fruitColor
+                    tr.append(fruitColorTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitPriceTd = document.createElement('td')
+                    fruitPriceTd.textContent = Green.fruitPrice
+                    tr.append(fruitPriceTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitweightTd = document.createElement('td')
+                    fruitweightTd.textContent = Green.fruitweight
+                    tr.append(fruitweightTd)
+
+                    // Finally append all the td,tr into table
+                    table.append(tr)
+                })
+
+            }
+            else if (arg == 'Yellow') {
+                var clr = fruits.filter(function (Yellow) {
+                    return Yellow.fruitColor == 'Yellow'
+                })
+                clr.map(function (Yellow) {
+                    var tr = document.createElement('tr')
+                    var fruitNameTd = document.createElement('td')
+                    fruitNameTd.textContent = Yellow.fruitName
+                    tr.append(fruitNameTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitColorTd = document.createElement('td')
+                    fruitColorTd.textContent = Yellow.fruitColor
+                    tr.append(fruitColorTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitPriceTd = document.createElement('td')
+                    fruitPriceTd.textContent = Yellow.fruitPrice
+                    tr.append(fruitPriceTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitweightTd = document.createElement('td')
+                    fruitweightTd.textContent = Yellow.fruitweight
+                    tr.append(fruitweightTd)
+
+                    // Finally append all the td,tr into table
+                    table.append(tr)
+                })
+
+            }
+            else if (arg == 'Orange') {
+                var clr = fruits.filter(function (Orange) {
+                    return Orange.fruitColor == 'Orange'
+                })
+                clr.map(function (Orange) {
+                    var tr = document.createElement('tr')
+                    var fruitNameTd = document.createElement('td')
+                    fruitNameTd.textContent = Orange.fruitName
+                    tr.append(fruitNameTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitColorTd = document.createElement('td')
+                    fruitColorTd.textContent = Orange.fruitColor
+                    tr.append(fruitColorTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitPriceTd = document.createElement('td')
+                    fruitPriceTd.textContent = Orange.fruitPrice
+                    tr.append(fruitPriceTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitweightTd = document.createElement('td')
+                    fruitweightTd.textContent = Orange.fruitweight
+                    tr.append(fruitweightTd)
+
+                    // Finally append all the td,tr into table
+                    table.append(tr)
+                })
+
+            }
+            else if (arg == 'Rose') {
+                var clr = fruits.filter(function (Rose) {
+                    return Rose.fruitColor == 'Rose'
+                })
+                clr.map(function (Rose) {
+                    var tr = document.createElement('tr')
+                    var fruitNameTd = document.createElement('td')
+                    fruitNameTd.textContent = Rose.fruitName
+                    tr.append(fruitNameTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitColorTd = document.createElement('td')
+                    fruitColorTd.textContent = Rose.fruitColor
+                    tr.append(fruitColorTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitPriceTd = document.createElement('td')
+                    fruitPriceTd.textContent = Rose.fruitPrice
+                    tr.append(fruitPriceTd)
+
+                    // create td  element,, push the value td and tr
+                    var fruitweightTd = document.createElement('td')
+                    fruitweightTd.textContent = Rose.fruitweight
+                    tr.append(fruitweightTd)
+
+                    // Finally append all the td,tr into table
+                    table.append(tr)
+                })
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

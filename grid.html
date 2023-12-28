@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Management</title>
+</head>
+<body>
+
+  <h1>Item Management</h1>
+
+  <form id="itemForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" step="0.01" required>
+
+    <button type="button" onclick="addItem()">Add Item</button>
+  </form>
+
+  <input type="text" id="searchInput" placeholder="Search by name" oninput="searchItems()">
+
+  <h2>All Items</h2>
+  <ul id="itemsList"></ul>
+
+  <script>
+    // Retrieve items from local storage or initialize an empty array
+    const items = JSON.parse(localStorage.getItem('items')) || [];
+
+    function addItem() {
+      const nameInput = document.getElementById('name');
+      const priceInput = document.getElementById('price');
+
+      const name = nameInput.value;
+      const price = parseFloat(priceInput.value);
+
+      // Validate input
+      if (!name || isNaN(price)) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      // Create a new item object
+      const newItem = { name, price };
+
+      // Add the new item object to the array
+      items.push(newItem);
+
+      // Save items to local storage
+      localStorage.setItem('items', JSON.stringify(items));
+
+      // Display the new item in the list
+      displayItems();
+
+      // Clear the form
+      nameInput.value = '';
+      priceInput.value = '';
+    }
+
+    function displayItems(itemsToDisplay = items) {
+      const itemsList = document.getElementById('itemsList');
+      itemsList.innerHTML = '';
+
+      for (const item of itemsToDisplay) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Name: ${item.name}, Price: ${item.price}`;
+        itemsList.appendChild(listItem);
+      }
+    }
+
+    function searchItems() {
+      const searchInput = document.getElementById('searchInput');
+      const searchTerm = searchInput.value.toLowerCase();
+
+      const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchTerm));
+      displayItems(filteredItems);
+    }
+
+    // Display existing items on page load
+    displayItems();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            background-color: rgb(21, 115, 198);
+            padding: 10px;
+        }
+        .header{
+            background-color: green;
+        }
+        .header h1{
+            display: grid;
+            justify-content: center;
+        }
+        .Her{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+        }
+        .Aside h1{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .Aside{
+            background-color: yellow;
+        }
+        .Article{
+            background-color: aqua;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            /* grid-template-rows: 0 0 0 ; */
+            /* grid-template-rows: 0fr 1fr 1fr; */
+            gap: 5px;
+        }
+        .Article h1{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .img{
+            background-color: chartreuse;
+            height: 100px;
+            width: 100px;
+        }
+        .Footer{
+            background-color: violet;
+            
+        }
+        .Footer h1{
+            display: grid;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+        <div class="header">
+            <h1>Header</h1>
+        </div>
+        <div class="Her">
+            <div class="Aside">
+                <h1>Aside</h1>
+            </div>
+            <div class="Article">
+                <div>
+                    Article
+                </div>
+                <!-- <h1>Article</h1> -->
+                <div class="img">
+                    Image
+                </div>
+                <div class="img">
+                    imag
+                </div>
+                <div class="img">
+                    img
+                </div>
+            </div>
+        </div>
+        <div class="Footer">
+            <h1>Footer</h1>
+        </div>
+    </div>
+</body>
+</html>
